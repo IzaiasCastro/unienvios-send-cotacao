@@ -117,10 +117,10 @@ class OrderObserver implements ObserverInterface
 
         foreach ($order->getAllItems() as $item) {
             $product = $this->productFactory->create()->load($item->getProductId());
-            $width = $product->getResource()->getAttribute('ts_dimensions_width')->getFrontend()->getValue($product);
-            $height = $product->getResource()->getAttribute('ts_dimensions_height')->getFrontend()->getValue($product);
-            $length = $product->getResource()->getAttribute('ts_dimensions_length')->getFrontend()->getValue($product);
-            $weight = $product->getResource()->getAttribute('ts_dimensions_weight')->getFrontend()->getValue($product);
+            $width = $product->getResource()->getAttribute('unienvios_width')->getFrontend()->getValue($product);
+            $height = $product->getResource()->getAttribute('unienvios_height')->getFrontend()->getValue($product);
+            $length = $product->getResource()->getAttribute('unienvios_length')->getFrontend()->getValue($product);
+            $weight = $product->getResource()->getAttribute('unienvios_weight')->getFrontend()->getValue($product);
          if ($width) {
                 $medidas['estimate_width'] += doubleval($width) * intVal($item->getQtyOrdered());
             }
@@ -141,7 +141,7 @@ class OrderObserver implements ObserverInterface
 
 
         $parametros = [
-        "zipcode_destiny" => $order->getShippingAddress()->getData("postcode"),
+        "zipcode_destiny" => str_replace("-", "",  $order->getShippingAddress()->getData("postcode") ),
         "document_recipient" => $order->getData("unienvios_document_recipient"),
         "name_recipient" =>$order->getShippingAddress()->getData("firstname"),
         "email_recipient" => $order->getShippingAddress()->getData("email"),
