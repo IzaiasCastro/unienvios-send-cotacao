@@ -1,0 +1,16 @@
+{
+    "name": "unienvios/sendCotacao",
+    "description": "This module does some stuff",
+    "type": "drupal-module",
+    "authors": [
+        {
+            "name": "Some Guy",
+            "homepage": "https://www.example.com/some_guy",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {
+        "unienvios/cotacao": "^1.0.*"
+    },
+    "license": "GPL-2.0-or-later"
+}
